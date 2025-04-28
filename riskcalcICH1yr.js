@@ -200,7 +200,7 @@ function calc_risk() {
                 else
                     creatWeight = 0.24695;
 
-                xbeta = ageWeight + sexWeight + raceWeight + ethnicityWeight + hospLengthWeight +
+                xbeta = ageWeight +  raceWeight + ethnicityWeight + hospLengthWeight +
                         dementiaWeight + statinWeight+priorKidWeight+priorHFWeight+bpSysWeight
                         +bpDiaWeight+totchlWeight+creatWeight+BMIWeight;
                 console.log(creatWeight);
