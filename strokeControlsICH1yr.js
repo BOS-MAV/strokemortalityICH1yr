@@ -113,6 +113,7 @@ $(document).ready(function () {
     $("#TotChol").tooltip({title: "Please enter total cholesterol between 0 and 500 mg/dL, leave blank if you do not have a value", placement: "bottom", trigger: "manual"});
     $("#creat").tooltip({title: "Please enter creatinine level between 0.59 and 1.39 mg/dL, leave blank if you do not have a value", placement: "bottom", trigger: "manual"});
     $("#BMI").tooltip({title: "Please enter a BMI between 12 and 60,leave blank if you do not have a value", placement: "bottom", trigger: "manual"});
+    $("#raceMark2").tooltip({title: "comprised of “Asian, American Indian or Alaska Native, Native Hawaiian or Other Pacific Islander, or unknown", placement:"bottom",trigger:"click"});
     function ethnicity_Val() {
         return ($("input[name='Ethnicity']:checked").val() === 'nhisp' || $("input[name='Ethnicity']:checked").val() === 'hisp');
     }
@@ -161,8 +162,10 @@ $(document).ready(function () {
             event.preventDefault();
             var risk_res = [];
             risk_res = calc_risk();
-            $('#message').html('0-30 day risk ' + risk_res[0]+"%<br/>0-90 day risk "+risk_res[1]+"%<br/>0-6 month risk "+risk_res[2]+
-                "%</br>0-1 year risk "+risk_res[3]+"%");
+            $('#message').html('0-30 day survival probability = ' + risk_res[0]
+                +"%<br/>0-90 day survival probability =  "+risk_res[1]
+                +"%<br/>0-6 month survival probability = "+risk_res[2]
+                +"%</br>0-1 uear survival probability =  "+risk_res[3]+"%");
             //$('#message').html('Results ' + calc_risk()+"%");
             $('#myModal').modal('show');
         }
@@ -303,6 +306,11 @@ $(document).ready(function () {
 
         
     });
+    $('#raceMark2').mouseover(function()
+    {
+        $('#raceMark2').tooltip("show");
+    });
+
     $('#BP_Sys').on('keydown', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -415,6 +423,10 @@ $("#ethn").change(function (){
             $("#sexMark").removeClass("btn-selected");
         }
         $("#race").focus();
+    });
+
+    $("othb").on("mouseover",function () {
+        $(this).next('label').css('background-color', 'lightblue');
     });
 
     $("input[name='Race']").change(function () {
@@ -860,3 +872,11 @@ function BMI_Val(finalChk) {
     }
 }
 })
+
+
+
+// Add a mouseover event listener
+$("#raceMark2").addEventListener('mouseover', () => {
+  // Change the button's background color
+  $("#raceMark2").style.backgroundColor = 'blue';
+});
